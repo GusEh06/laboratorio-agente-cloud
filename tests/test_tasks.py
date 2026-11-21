@@ -31,8 +31,13 @@ class TestTasks(unittest.TestCase):
         completar_tarea(tareas, completada["id"])
 
         self.assertEqual(pendientes(tareas, " eSTUDIO "), [estudio])
-        self.assertEqual(pendientes(tareas, "Otro"), [])
         self.assertEqual(pendientes(tareas), [estudio, practica])
+
+    def test_filtrar_pendientes_por_categoria_inexistente(self):
+        tareas = []
+        agregar_tarea(tareas, "Leer documentación", "Estudio")
+
+        self.assertEqual(pendientes(tareas, "Otro"), [])
 
     def test_completar_tarea(self):
         tareas = []
